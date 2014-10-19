@@ -1,0 +1,32 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/4.6.0/codemirror.min.js"></script>
+
+<script src="mode/pegjs/pegjs.js"></script>
+<script src="mode/javascript/javascript.js"></script>
+
+
+
+<polymer-element name="code-mirror" >
+	<template>
+		<link rel="stylesheet" type="text/css" href="code-mirror.css">
+		<link rel="stylesheet" type="text/css" href="theme/ambiance.css">
+		<div id="editor"></div>
+	</template>
+
+	<script>
+		var defaultCode = "var Point = function(x,y){\n\tthis.x = x || 0;\n\tthis.y = y || 0;\n\n\tvar self = this;\n\n\tthis.toString = function(){\n\t\treturn \"[\" + self.x + \",\" + self.y + \"]\"\n\t};\n};";
+
+		Polymer({
+			ready: function(){
+				CodeMirror(this.$.editor, {
+					indentUnit: 4,
+					lineNumbers: true,
+					mode : "javascript",
+					theme: "ambiance",
+					value: defaultCode
+				})
+			}
+		});
+	</script>
+</polymer-element>
